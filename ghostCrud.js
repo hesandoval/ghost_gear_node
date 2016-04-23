@@ -5,7 +5,7 @@ function setup(io){
     io.on("connection", function(socket) {
         console.log("A user has connected to the page");
         socket.on("get_point_cloud", function(callback){
-            ghostSchema.find({}, "location", callback);
+            ghostSchema.find({}, callback);
         });
     });
 }
