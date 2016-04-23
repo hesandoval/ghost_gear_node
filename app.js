@@ -35,7 +35,7 @@ app.use(multer({
         //TODO use node-uuid to generate a unique name for every image
         return filename;
     }
-}));
+}).single("image"));
 //routes
 app.use('/', routes);
 app.use('/ghostgear', ghostGear);
