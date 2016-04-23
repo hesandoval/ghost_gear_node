@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ghostSchema = new Schema({
+            image: String,
             source: {
                 first_name: String,
                 last_name: String,
@@ -27,8 +28,7 @@ var ghostSchema = new Schema({
                 comments: String,
             },
             wildlife_data: {
-                animals: Boolean,
-                animal_descripton: [{
+                animals: [{
                     code: Number,
                     condition: String,
                     length_size: Number

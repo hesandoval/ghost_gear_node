@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hogan = require('hogan-express');
 //routes
+
 var routes = require('./routes/index');
 var ghostGear = require('./routes/ghostGear');
 
@@ -19,12 +20,21 @@ app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+//TODO need to add schema to handle counter per net_code seen
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(multer({
+    dest: '../public/img',
+    rename: function(fieldname, filename) {
+        //TODO use node-uuid to generate a unique name for every image
+        return filename;
+    }
+}));
 //routes
 app.use('/', routes);
 app.use('/ghostgear', ghostGear);
