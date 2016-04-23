@@ -41,7 +41,6 @@ app.use(multer({
 }).single("image"));
 //routes
 app.use('/', routes);
-app.use('/ghostgear', ghostGear);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
