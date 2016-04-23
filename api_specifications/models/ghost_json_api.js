@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var ghostSchema = new Schema({
+var gs = new Schema({
             image: String,
             source: {
                 first_name: String,
@@ -25,7 +25,7 @@ var ghostSchema = new Schema({
                 net_code: String,
                 estimate_net_width: Number,
                 estimate_net_length: Number,
-                comments: String,
+                comments: String
             },
             wildlife_data: {
                 animals: [{
@@ -34,8 +34,8 @@ var ghostSchema = new Schema({
                     length_size: Number
                 }]
             }
-        }
+});
 
-var ghostSchema = mongoose.model('ghostSchema', ghostSchema);
+var ghostSchema = mongoose.model('ghostSchema', gs);
 
-export.models = ghostSchema;
+module.exports = ghostSchema;

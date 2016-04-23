@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hogan = require('hogan-express');
+var multer = require('multer');
 //routes
 
 var routes = require('./routes/index');
@@ -34,7 +35,7 @@ app.use(multer({
         //TODO use node-uuid to generate a unique name for every image
         return filename;
     }
-}));
+}).single("image"));
 //routes
 app.use('/', routes);
 app.use('/ghostgear', ghostGear);
