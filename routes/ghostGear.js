@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var multer = require('multer');
 //var imgUpload = multer({dest : '../public/img'})
-var ghost = require('../api_specifications/models/ghost_json_api.js')
+var ghost = require('../api_specifications/models/ghost_json_api.js');
 
 var router = express.Router();
 
