@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var gs = new Schema({
             image: String,
+            timeStamp: { type : Date, default: Date.now },
             source: {
                 first_name: String,
                 last_name: String,
