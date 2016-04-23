@@ -10,7 +10,7 @@ var gs = new Schema({
                 last_name: String,
                 email: String,
                 contact_number: Number,
-                role: String,
+                role: String
             },
             location: {
                 detail: String,
