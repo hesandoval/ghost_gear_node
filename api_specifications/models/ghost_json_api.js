@@ -14,7 +14,11 @@ var gs = new Schema({
             },
             location: {
                 detail: String,
-                location: {
+                originating_location: {
+                    lat: {type : Number, default : null},
+                    lng: {type : Number, default : null}
+                },
+                reported_location:{
                     lat: Number,
                     lng: Number
                 }
