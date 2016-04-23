@@ -30,7 +30,8 @@ var gs = new Schema({
                 net_code: String,
                 estimate_net_width: Number,
                 estimate_net_length: Number,
-                comments: String
+                comments: String,
+                num_strands: Number
             },
             wildlife_data: {
                 animals: [{
