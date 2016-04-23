@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hogan = require('hogan-express');
 var multer = require('multer');
+var uuid = require('node-uuid');
 //routes
 
 var routes = require('./routes/index');
@@ -33,6 +34,7 @@ app.use(multer({
     dest: '../public/img',
     rename: function(fieldname, filename) {
         //TODO use node-uuid to generate a unique name for every image
+        filename = uuid.v1();
         return filename;
     }
 }).single("image"));

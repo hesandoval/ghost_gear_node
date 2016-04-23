@@ -3,7 +3,7 @@ var router = express.Router();
 var configs = require('../config.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index.html', { title: 'Express', API_KEY:configs.api });
+  res.render('index.html', { title: 'Fishackathon Works', API_KEY:configs.api });
 });
 
 module.exports = router;
