@@ -43,6 +43,7 @@ router.post('/ghostgear', function(req, res) {
 						if(err){
 							console.log(err);
 						} else {
+							res.status(200).end();
 							console.log('successfull counter created');
 						}
 
