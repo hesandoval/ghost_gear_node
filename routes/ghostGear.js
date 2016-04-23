@@ -8,16 +8,7 @@ var ghost = require('../api_specifications/models/ghost_json_api.js');
 
 var router = express.Router();
 
-var options = {
-	// Return the document after updates are applied
-	new: true,
-	// Create a document if one isn't found. Required
-	// for `setDefaultsOnInsert`
-	upsert: true,
-	setDefaultsOnInsert: true
-};
-var query = {};
-var update = 1;
+
 
 mongoose.connect('mongodb://localhost:27017/fishackathon');
 
@@ -43,12 +34,23 @@ router.post('/ghostgear', function(req, res) {
 			console.log(err);
 		} else {
 			//console.log(savedobject)
-			query = req.body.net_data.net_code;
-			var ghostCntr = new netCounter();
+			netCounter.findOne({'net_code': req.body.net_data.net_code}, 'net_code count', function(err, netCont) {
+				if (err) return handleError(err);
 
-			ghostCntr.findOneAndUpdate(query, update, options, function(error, doc) {
-				assert.ifError(error);
-				assert.equal(doc.net_code, req.body.net_data.net_code);
+				if(netCont == null){
+					var ghostCntr = new netCounter({net_code:req.body.net_data.net_code});
+					ghostCntr.save(function(err, savedobject){
+						if(err){
+							console.log(err);
+						} else {
+							console.log('successfull counter created');
+						}
+
+					})
+				}
+				var newVal = netCont.count + 1;
+
+				netCounter.update({'net_code': netCont.net}, { $set: { count: newVal } });
 
 			});
 			console.log("Data successfully stored");
