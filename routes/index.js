@@ -14,7 +14,7 @@ var netCounter = require('../api_specifications/models/netCounter');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index.html', { title: 'Fishackathon Works', API_KEY:configs.api });
+  res.render('index.html', { title: 'Ghost Gear', API_KEY:configs.api });
 });
 
 router.post('/ghostgear', function(req, res, next) {

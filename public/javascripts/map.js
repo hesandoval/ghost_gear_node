@@ -6,7 +6,7 @@ function initMap() {
     var initialLocation = new google.maps.LatLng(36.617906, -121.901943);
     var map = new google.maps.Map(document.getElementById('map'), {
         center: initialLocation,
-        zoom: 17
+        zoom: 10
     });
     var mc = new MarkerClusterer(map);
     // Try W3C Geolocation (Preferred)
