@@ -29,13 +29,22 @@ router.post('/ghostgear', upload.single('image'), function(req, res, next) {
     // console.log(req);
     // console.log(res);
 
-    console.log(req);
+    console.log(JSON.stringify(req.body));
+
+    var animals = req.body.wildlife_data;
+
+    console.log(typeof animals);
+
+    console.log('After animals');
 
 	if (!(0 < animals.length)) {
 		animals = [];
 	}
 
+    console.log('Before ghost');
 	var newNet = new ghost();
+
+    console.log('New Ghost');
 
 	newNet.image = req.file.path;
 	newNet.source = req.body.source;
