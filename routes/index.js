@@ -6,6 +6,16 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var netContr = require('../api_specifications/models/netCounter.js');
 var multer = require('multer');
+var uuid = require('node-uuid');
+var upload = multer({
+    dest: '../public/img',
+    rename: function(fieldname, filename) {
+            //TODO use node-uuid to generate a unique name for every image
+            console.log('Renaming');
+            filename = uuid.v1();
+            return filename;
+    }
+})
 //var imgUpload = multer({dest : '../public/img'})
 var ghost = require('../api_specifications/models/ghost_json_api.js');
 
@@ -15,10 +25,11 @@ router.get('/', function(req, res, next) {
   res.render('index.html', { title: 'Fishackathon Works', API_KEY:configs.api });
 });
 
-router.post('/ghostgear', function(req, res) {
+router.post('/ghostgear', upload.single('image'), function(req, res, next) {
+    // console.log(req);
+    // console.log(res);
+
     console.log(req);
-    console.log(res);
-	var animals = JSON.parse(req.body.animals);
 
 	if (!(0 < animals.length)) {
 		animals = [];
