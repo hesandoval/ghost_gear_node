@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/scripts', express.static(__dirname + '/node_modules/js-marker-clusterer/src/'));
 app.use(multer({
-    dest: '../public/img',
+    dest: './public/img',
     rename: function(fieldname, filename) {
         //TODO use node-uuid to generate a unique name for every image
         filename = uuid.v1();
