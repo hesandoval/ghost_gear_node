@@ -15,6 +15,15 @@ var ghostGear = require('./routes/ghostGear');
 
 var app = express();
 
+app.use(multer({
+    dest: './public/img',
+    rename: function(fieldname, filename) {
+        //TODO use node-uuid to generate a unique name for every image
+        filename = uuid.v1();
+        return filename;
+    }
+}).single("image"));
+
 
 var lol = function(req, res, next) {
     req.header('Access-Control-Allow-Origin', '*');
@@ -48,6 +57,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/scripts', express.static(__dirname + '/node_modules/js-marker-clusterer/src/'));
 app.use('/', routes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

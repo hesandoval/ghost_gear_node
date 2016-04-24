@@ -16,7 +16,13 @@ mongoose.connect('mongodb://localhost:27017/fishackathon');
 router.post('/ghostgear', function(req, res) {
     //console.log(req);
     //console.log(res);
-	var animals = JSON.parse(req.body.wildlife_data);
+	var payload = JSON.parse(req.body.payload);
+
+    console.log(payload);
+
+    console.log(typeof payload);
+
+
 
 	if (!(0 < animals.length)) {
 		animals = [];
