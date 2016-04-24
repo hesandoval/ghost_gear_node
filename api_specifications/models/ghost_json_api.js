@@ -9,12 +9,16 @@ var gs = new Schema({
                 first_name: String,
                 last_name: String,
                 email: String,
-                contact_number: Number,
+                contact_number: String,
                 role: String
             },
             location: {
                 detail: String,
-                location: {
+                originating_location: {
+                    lat: {type : Number, default : null},
+                    lng: {type : Number, default : null}
+                },
+                reported_location:{
                     lat: Number,
                     lng: Number
                 }
@@ -26,7 +30,8 @@ var gs = new Schema({
                 net_code: String,
                 estimate_net_width: Number,
                 estimate_net_length: Number,
-                comments: String
+                comments: String,
+                num_strands: Number
             },
             wildlife_data: {
                 animals: [{

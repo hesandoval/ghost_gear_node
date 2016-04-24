@@ -15,6 +15,31 @@ var ghostGear = require('./routes/ghostGear');
 
 var app = express();
 
+app.use(multer({
+    dest: './public/img',
+    rename: function(fieldname, filename) {
+        //TODO use node-uuid to generate a unique name for every image
+        filename = uuid.v1();
+        return filename;
+    }
+}).single("image"));
+
+
+var lol = function(req, res, next) {
+    req.header('Access-Control-Allow-Origin', '*');
+    req.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    req.header('Access-Control-Allow-Headers', 'Content-Type,Accept,X-Custom-Header');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    if ('OPTIONS' === req.method) {
+        res.status(200).end();
+    } else {
+        next();
+    }
+}
+
+app.use(lol);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', hogan);
@@ -31,16 +56,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/scripts', express.static(__dirname + '/node_modules/js-marker-clusterer/src/'));
-app.use(multer({
-    dest: './public/img',
-    rename: function(fieldname, filename) {
-        //TODO use node-uuid to generate a unique name for every image
-        filename = uuid.v1();
-        return filename+".jpg";
-    }
-}).single("image"));
-//routes
 app.use('/', routes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
